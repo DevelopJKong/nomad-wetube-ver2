@@ -1,0 +1,27 @@
+{
+  "name": "nomad_node_js",
+  "version": "1.0.0",
+  "description": "this is wetube trying again",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevelopJKong/wetube-again.git"
+  },
+  "author": "jeongbin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevelopJKong/wetube-again/issues"
+  },
+  "homepage": "https://github.com/DevelopJKong/wetube-again#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "nodemon": "^2.0.15"
+  }
+}
