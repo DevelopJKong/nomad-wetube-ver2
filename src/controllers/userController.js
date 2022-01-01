@@ -1,10 +1,17 @@
 export const join = (req,res) => {
-    res.send("join");
+    return res.send("join");
 }
-
 export const edit = (req,res) => {
-    res.send("edit");
+    return res.send("edit");
 }
 export const remove = (req,res) => {
-    res.send("remove");
+    return res.send("remove");
+}
+
+export const login = (req,res) => {
+    return res.send("Login");
+}
+
+export const logout = (req,res) => {
+    return res.send("Logout");
 }
