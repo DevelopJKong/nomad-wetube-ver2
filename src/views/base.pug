@@ -5,12 +5,12 @@ html(lang="ko")
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body
         header 
+            h1=pageTitle
             nav 
                 ul 
                     li 
-                        a(href="/login") Login
+                        a(href="/videos/upload") upload 
             
-            h1=pageTitle 
         main
             block content   
     include partials/footer
