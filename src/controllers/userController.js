@@ -1,6 +1,11 @@
-export const join = (req,res) => {
-    return res.send("join");
+export const getJoin = (req,res) => {
+    return res.render("join",{pageTitle:"Join"});
 }
+
+export const postJoin = (req,res) => {
+    return res.redirect("/");
+}
+
 export const edit = (req,res) => {
     return res.send("edit");
 }
