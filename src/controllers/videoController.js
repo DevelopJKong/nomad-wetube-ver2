@@ -23,9 +23,9 @@ export const getEdit = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id); // 여기서는 이렇게 해주는것이 좋다
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Video not found." });
   }
-  return res.status(404).render("edit", { pageTitle: `Edit: ${video.title}`, video });
+  return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
 };
 
 export const postEdit = async (req, res) => {
