@@ -47,7 +47,7 @@ export const getLogin = (req, res) => {
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = "Login";
-  const user = await User.findOne({ username,socialOnly:false }); // 몇몇 사람들은 github로 로그인 했는지 password를 통해 로그인을 했는지 잊어버리기 때문
+  const user = await User.findOne({ username, socialOnly: false }); // 몇몇 사람들은 github로 로그인 했는지 password를 통해 로그인을 했는지 잊어버리기 때문
   if (!user) {
     return res.status(400).render("login", {
       pageTitle,
@@ -124,7 +124,7 @@ export const finishGithubLogin = async (req, res) => {
     if (!user) {
       user = await User.create({
         name: userData.name ? userData.name : "Unknown",
-        avatarUrl:userData.avatar_url,
+        avatarUrl: userData.avatar_url,
         username: userData.login,
         email: emailObj.email,
         password: "",
@@ -140,15 +140,37 @@ export const finishGithubLogin = async (req, res) => {
   }
 };
 export const getEdit = (req, res) => {
-  return res.render("edit-profile",{ pageTitle:"Edit Profile"});
+  return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
 
-export const postEdit = (req,res) => {
-  return res.redirect("/");
-}
+export const postEdit = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { name, email, username, location },
+  } = req;
+  const updateUser = await User.findByIdAndUpdate(
+    _id,
+    {
+      name,
+      email,
+      username,
+      location,
+    },
+    { new: true }
+  );
 
-
-
+  // req.session.user = {
+  //   ...req.session.user,
+  //   name,
+  //   email,
+  //   username,
+  //   location
+  // }
+  req.session.user = updateUser;
+  return res.redirect("/users/edit");
+};
 
 export const logout = (req, res) => {
   req.session.destroy();
@@ -157,5 +179,3 @@ export const logout = (req, res) => {
 export const see = (req, res) => {
   return res.send("see");
 };
-
-
