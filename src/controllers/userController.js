@@ -147,12 +147,35 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, avatarUrl },
+      user: { _id, avatarUrl, email: sessionEmail, username: sessionUsername },
     },
     body: { name, email, username, location },
     file,
   } = req;
-  console.log(file);
+
+  //req.session.user.email => sessionEmail
+  //const sessionEmail = req.session.user.email.sessionEmail //초기화?
+  //req.session.user.username = > sessionUsername
+  //✨코드 챌린지✨
+  //현재 있는것과 똑같으면 변경 되도록 하고 1. username만 변경하기 & 2. email만 변경하기
+  //다른 사람은 다른사람이 가지고 있는것은 변경 못한다
+  let searchParam = [];
+  if (sessionEmail !== email) {
+    searchParam.push({ email });
+  }
+  if (sessionUsername !== username) {
+    searchParam.push({ username });
+  }
+  if (searchParam.length > 0) {
+    const foundUser = await User.findOne({ $or: searchParam });
+    if (foundUser && foundUser._id.toString() !== _id) {
+      return res.status(400).render("edit-profile", {
+        pageTitle: "Edit Profile",
+        errorMessage: "This username/email is already taken.",
+      });
+    }
+  }
+
   const updateUser = await User.findByIdAndUpdate(
     _id,
     {
