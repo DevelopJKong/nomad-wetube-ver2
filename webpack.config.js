@@ -4,6 +4,7 @@ const path = require("path");
 module.exports = {
   entry: "./src/client/js/main.js",
   mode: "development",
+  watch: true,
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/styles.css",
@@ -12,6 +13,7 @@ module.exports = {
   output: {
     filename: "js/main.js",
     path: path.resolve(__dirname, "assets"),
+    clean:true,
   },
   module: {
     rules: [
@@ -26,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-		use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"], // 역순으로 적어주는 이유는 webpack이 역순으로 실행하기 때문이다
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"], // 역순으로 적어주는 이유는 webpack이 역순으로 실행하기 때문이다
       },
     ],
   },
