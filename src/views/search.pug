@@ -9,3 +9,5 @@ block content
     div
         each video in videos 
             +videoMixins(video)
+        else 
+            span.empty__message No videos found

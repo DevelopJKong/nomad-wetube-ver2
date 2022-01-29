@@ -1,0 +1,9 @@
+.empty__message {
+  margin-bottom: 50px;
+  font-size: 18px;
+}
+.video-grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 이게 정확히 무슨 뜻인지 모르겠다*/
+}
