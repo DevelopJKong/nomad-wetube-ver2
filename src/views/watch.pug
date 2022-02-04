@@ -3,7 +3,7 @@ extends base.pug
 block content
     div#videoContainer
         video(src="/" + video.fileUrl, controls)
-        div
+        div#videoControls
             button#play Play
             button#mute Mute
             span#time 00:00/00:00
