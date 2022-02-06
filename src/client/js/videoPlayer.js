@@ -1,4 +1,3 @@
-
 const video = document.querySelector("video");
 
 const playBtn = document.getElementById("play");
@@ -49,8 +48,8 @@ const handleVolumeChange = (event) => {
 
   if (video.muted === false) {
     video.muted = false;
-    muteBtn.innerText = "Mute";
-  }
+    //muteBtn.innerText = "Mute"; // 여기서 mute를 바꿔버리면 문제가 생긴다
+  } 
   volumeValue = value;
   video.volume = value;
 };
@@ -61,8 +60,7 @@ const formatTime = (seconds) => {
 const handleLoadedData = () => {
   totalTime.innerText = formatTime(Math.floor(video.duration));
   timeline.max = Math.floor(video.duration);
-  };
-
+};
 
 const handleTimeUpdate = () => {
   currentTime.innerText = formatTime(Math.floor(video.currentTime));
@@ -116,33 +114,30 @@ const handleEnded = () => {
 };
 
 const handleKeypressFullScreen = (event) => {
-  const fullscreen = document.fullscreenElement; 
-  
-    if(event.keyCode === 102 || event.keyCode === 70) {
-      if (fullscreen) {
-        document.exitFullscreen();
-        fullScreenIcon.classList = "fas fa-expand";
-      } else {
-        videoContainer.requestFullscreen();
-        fullScreenIcon.classList = "fas fa-compress";
-      }
-     
+  const fullscreen = document.fullscreenElement;
+
+  if (event.keyCode === 102 || event.keyCode === 70) {
+    if (fullscreen) {
+      document.exitFullscreen();
+      fullScreenIcon.classList = "fas fa-expand";
+    } else {
+      videoContainer.requestFullscreen();
+      fullScreenIcon.classList = "fas fa-compress";
+    }
   }
-}
+};
 
 const handleKeypressSpaceBar = (event) => {
   event.preventDefault();
-  if(event.keyCode === 32) {
+  if (event.keyCode === 32) {
     if (video.paused) {
       video.play();
     } else {
       video.pause();
     }
-    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause"; 
+    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
   }
-}
-
-
+};
 
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
