@@ -29,8 +29,13 @@ app.use(session({
 
 app.use(localsMiddleware);
 app.use("/uploads",express.static("uploads"));
-app.use("/static",express.static("assets"));
+app.use("/static",express.static("assets"),express.static("node_modules/@ffmpeg/core/dist")); // ffmpg 관련
 app.use("/",rootRouter);
+app.use((req, res, next) => { // ffmpg 관련
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+  });
 app.use("/videos",videoRouter);
 app.use("/users",userRouter);
 app.use("/api",apiRouter);
