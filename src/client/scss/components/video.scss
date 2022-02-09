@@ -6,6 +6,12 @@
       width: 100%;
       background-color: ivory;
     }
+    .video-mixin__thumb-img {
+      min-width:100%;
+      max-height:100%;
+      object-fit: cover;
+      border-radius: 0.7777rem;
+    }
     .video-mixin__data {
       padding: 0px 15px;
       .video-mixin__title {
