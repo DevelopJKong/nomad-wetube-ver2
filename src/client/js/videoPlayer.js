@@ -14,6 +14,10 @@ const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
+const textarea = document.querySelector(".video__comment-textarea");
+const submitBtn = document.querySelector(".video__comment-btn");
+
+
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
 let volumeValue = 0.5;
@@ -23,11 +27,21 @@ const handlePlayClick = () => {
   // if the video is playing, pause it
   if (video.paused) {
     video.play();
+    document.addEventListener("keypress",handleKeypressFullScreen);
+    document.addEventListener("keypress",handleKeypressSpaceBar);
   } else {
     video.pause();
+    document.removeEventListener("keypress",handleKeypressFullScreen);
+    document.removeEventListener("keypress",handleKeypressSpaceBar);
   }
   playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
+
+const handlePlayEnd = () => {
+  if(video.currentTime === video.duration) {
+    playBtnIcon.classList = "fas fa-play";
+  }
+}
 
 const handleMuteClick = () => {
   if (video.muted) {
@@ -69,6 +83,7 @@ if (isHeroku && video) {
 const handleTimeUpdate = () => {
   currentTime.innerText = formatTime(Math.floor(video.currentTime));
   timeline.value = Math.floor(video.currentTime);
+  handlePlayEnd();
 };
 
 const handleTimelineChange = (event) => {
@@ -115,6 +130,7 @@ const handleEnded = () => {
   fetch(`/api/videos/${id}/view`, {
     method: "POST",
   });
+
 };
 
 const handleKeypressFullScreen = (event) => {
@@ -144,13 +160,21 @@ const handleKeypressSpaceBar = (event) => {
   }
 };
 
+const handleStopTextareaEvent = () => {
+  document.removeEventListener("keypress",handleKeypressFullScreen);
+  document.removeEventListener("keypress",handleKeypressSpaceBar);
+}
+const handleAddTextareaEvent = () => {
+  document.addEventListener("keypress",handleKeypressFullScreen);
+  document.addEventListener("keypress",handleKeypressSpaceBar);
+}
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
+textarea.addEventListener("click",handleStopTextareaEvent);
+submitBtn.addEventListener("click",handleAddTextareaEvent);
 
-//일단 주석을 해두고 다시 버그를 수정해보려고 합니다
-// document.addEventListener("keypress",handleKeypressFullScreen);
-// document.addEventListener("keypress",handleKeypressSpaceBar);
 
 video.addEventListener("loadedmetadata", handleLoadedData);
 video.addEventListener("timeupdate", handleTimeUpdate);

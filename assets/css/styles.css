@@ -237,6 +237,9 @@ input[type=submit]:disabled,
 #videoContainer .videoControls.showing {
   opacity: 1;
 }
+#videoContainer .videoControls input {
+  cursor: pointer;
+}
 #videoContainer .videoControls .videoControls__play {
   display: flex;
   align-items: center;
@@ -248,6 +251,9 @@ input[type=submit]:disabled,
 #videoContainer .videoControls .videoControls__play .videoControls__time {
   font-size: 12px;
 }
+#videoContainer .videoControls .videoControls__play i {
+  cursor: pointer;
+}
 #videoContainer .videoControls .videoControls__volume {
   display: flex;
   align-items: center;
@@ -257,6 +263,10 @@ input[type=submit]:disabled,
 }
 #videoContainer .videoControls .videoControls__volume span i {
   font-size: 20px;
+  cursor: pointer;
+}
+#videoContainer .videoControls .videoControls__screen i {
+  cursor: pointer;
 }
 
 .search__form {

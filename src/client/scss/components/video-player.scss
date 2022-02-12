@@ -26,6 +26,10 @@
     padding: 10px;
     left: 0;
     box-sizing: border-box;
+
+      input {
+        cursor: pointer;
+      }
   
     .videoControls__play {
       display: flex;
@@ -36,6 +40,11 @@
       }
       .videoControls__time {
         font-size: 12px;
+       
+      
+      }
+      i {
+        cursor:pointer;
       }
     }
     .videoControls__volume {
@@ -45,7 +54,13 @@
         margin-left: 10px;
         i {
           font-size: 20px;
+          cursor: pointer;
         }
+      }
+    }
+    .videoControls__screen {
+      i {
+        cursor: pointer;
       }
     }
   }
