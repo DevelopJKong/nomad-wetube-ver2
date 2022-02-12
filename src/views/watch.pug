@@ -43,8 +43,11 @@ block content
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment._id)
                     i.fas.fa-comment
-                    span #{comment.text}
-                    span ❌ 
+                    
+                    span #{comment.text.length<15 ? comment.text: comment.text.slice(0,15) + "..."}
+                    |&nbsp;&nbsp;&nbsp;
+                    if loggedIn && (loggedInUser._id === String(comment.owner))
+                        span.remove-btn ❌ 
 
 
 

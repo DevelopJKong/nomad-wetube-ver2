@@ -383,6 +383,9 @@ form label {
   color: black;
   margin-bottom: 10px;
 }
+.video__comments .video__comment .remove-btn {
+  cursor: pointer;
+}
 
 a {
   color: inherit;
