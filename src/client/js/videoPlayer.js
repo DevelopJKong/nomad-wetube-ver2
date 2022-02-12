@@ -61,6 +61,10 @@ const handleLoadedData = () => {
   totalTime.innerText = formatTime(Math.floor(video.duration));
   timeline.max = Math.floor(video.duration);
 };
+const isHeroku = process.env.NODE_ENV === "production";
+if (isHeroku && video) {
+  handleLoadedData();
+}
 
 const handleTimeUpdate = () => {
   currentTime.innerText = formatTime(Math.floor(video.currentTime));
