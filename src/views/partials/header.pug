@@ -24,7 +24,7 @@ header
                         else
                             if loggedInUser.avatarUrl
                                 if loggedInUser.avatarUrl.includes("github")
-                                    img(src= "/" + loggedInUser.avatarUrl,crossorigin).header__avatar
+                                    img(src=loggedInUser.avatarUrl,crossorigin).header__avatar
                                 else                           
                                     img(src= "/" + loggedInUser.avatarUrl,crossorigin).header__avatar
             else
