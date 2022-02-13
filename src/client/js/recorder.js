@@ -24,7 +24,6 @@ const downloadFile = (fileUrl, fileName) => {
 };
 
 const handleDownload = async () => {
-
   actionBtn.removeEventListener("click",handleDownload);
   actionBtn.innerText = "Transcoding ....";
   actionBtn.disabled = true;
@@ -74,25 +73,29 @@ const handleDownload = async () => {
   URL.revokeObjectURL(videoFile);
 
   actionBtn.disabled = false;
-  actionBtn.innerText = "Record Again";
-  actionBtn.addEventListener("click",handleStart);
+  actionBtn.innerText = "Record Again & Reload";
+  actionBtn.addEventListener("click",()=> {
+    window.location.reload();
+  })
 };
 
 
 const handleStart = () => {
-  actionBtn.innerText = "Stop Record";
+  actionBtn.innerText = "Recording";
+  actionBtn.disabled = true;
   actionBtn.removeEventListener("click", handleStart);
-  actionBtn.addEventListener("click", handleStop);
 
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   console.log(recorder);
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data);
-
     video.srcObject = null;
     video.src = videoFile;
     video.loop = true;
     video.play();
+    actionBtn.innerText = "Download";
+    actionBtn.disabled = false;
+    actionBtn.addEventListener("click", handleDownload);
   };
   recorder.start();
   setTimeout(() => {
