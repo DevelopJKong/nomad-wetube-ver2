@@ -174,6 +174,8 @@ muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
 textarea.addEventListener("click",handleStopTextareaEvent);
 submitBtn.addEventListener("click",handleAddTextareaEvent);
+document.addEventListener("keypress",handleKeypressFullScreen);
+document.addEventListener("keypress",handleKeypressSpaceBar);
 
 
 video.addEventListener("loadedmetadata", handleLoadedData);

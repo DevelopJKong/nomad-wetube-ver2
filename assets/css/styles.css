@@ -361,6 +361,17 @@ form label {
   color: cornflowerblue;
   text-decoration: underline;
 }
+.video__data .video__edit-btn {
+  margin-top: 10px;
+  width: 15%;
+  height: 1.1em;
+  color: #ffeaa7;
+}
+.video__data .video__delete-btn {
+  width: 15%;
+  height: 1.1em;
+  color: #ff7675;
+}
 
 .video__comment-textarea {
   width: 98%;
