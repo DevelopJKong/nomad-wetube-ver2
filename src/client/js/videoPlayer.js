@@ -172,11 +172,6 @@ const handleAddTextareaEvent = () => {
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
-textarea.addEventListener("click",handleStopTextareaEvent);
-submitBtn.addEventListener("click",handleAddTextareaEvent);
-document.addEventListener("keypress",handleKeypressFullScreen);
-document.addEventListener("keypress",handleKeypressSpaceBar);
-
 
 video.addEventListener("loadedmetadata", handleLoadedData);
 video.addEventListener("timeupdate", handleTimeUpdate);
@@ -185,3 +180,12 @@ videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreen.addEventListener("click", handleFullScreen);
+
+/*코드 챌린지 버튼*/
+document.addEventListener("keypress",handleKeypressFullScreen);
+document.addEventListener("keypress",handleKeypressSpaceBar);
+if(textarea && submitBtn) {
+  textarea.addEventListener("click",handleStopTextareaEvent);
+  submitBtn.addEventListener("click",handleAddTextareaEvent);
+}
+
