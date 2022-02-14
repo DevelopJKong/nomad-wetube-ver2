@@ -134,9 +134,7 @@ const handleEnded = () => {
 };
 
 const handleKeypressFullScreen = (event) => {
-
   const fullscreen = document.fullscreenElement;
-
   if (event.keyCode === 102 || event.keyCode === 70) {
     if (fullscreen) {
       document.exitFullscreen();
